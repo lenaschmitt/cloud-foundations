@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import jsonify
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -21,6 +22,11 @@ def html():
     <p>Hello</p>
     <p><b>World</b></p>
     """
+@app.route('/pandas')
+def pandas_suar():
+        df = pd.read_csv("https://raw.githubusercontent.com/noahgift/sugar/master/data/e\
+4 ducation_sugar_cdc_2003.csv")
+        return jsonify(df.to_dict())
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
